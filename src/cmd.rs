@@ -348,6 +348,19 @@ pub enum Sub {
         #[structopt(long)]
         restore_name: Option<String>,
     },
+
+
+    /// Execute SQL (PartiQL) for DynamoDB
+    ///
+    /// e.g. `$ dy sql "SELECT * FROM your_table"`
+    /// https://partiql.org/
+    /// https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ql-reference.html
+    #[structopt()]
+    Sql {
+        /// PartiQL statement. e.g. `SELECT * FROM your_table`
+        statement: String,
+    },
+
 }
 
 

@@ -32,6 +32,7 @@ mod bootstrap;
 mod cmd;
 mod control;
 mod data;
+mod sql;
 mod transfer;
 
 
@@ -131,6 +132,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
             else    { control::backup(context, all_tables /* all_tables is simply ignored for "backup" */).await }
         },
         cmd::Sub::Restore { backup_name, restore_name } => control::restore(context, backup_name, restore_name).await,
+        cmd::Sub::Sql { statement } => sql::execute_statement(context, statement).await,
     }
 
     Ok(())
